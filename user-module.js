@@ -7,7 +7,11 @@ class UserModule extends HTMLElement {
 
         // Define component HTML code
         // (We could also have used js DOM method as createElement ...)
-        shadowRootElement.innerHTML = `
+        shadowRootElement.innerHTML = this.getTemplate();
+    }
+
+    getTemplate() {
+        return `
 <h1>Users</h1>
 <form>
     <label for="username">User</label>
