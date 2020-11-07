@@ -15,6 +15,8 @@ class UserModule extends HTMLElement {
         //   bind() allow to force the value of 'this' inside the function
         const addButton = this.shadowRootElement.querySelector('.btn-add');
         addButton.addEventListener('click', this.addItem.bind(this));
+
+        this.initUserList();
     }
 
     addItem() {
@@ -24,6 +26,23 @@ class UserModule extends HTMLElement {
         userItemElement.innerText = userInput.value;
 
         userListElement.appendChild(userItemElement);
+    }
+
+    initUserList() {
+        const userList = [
+            'Leanne Graham',
+            'Ervin Howell',
+            'Clementine Bauch'
+        ]
+
+        const userListElement = this.shadowRootElement.querySelector('user-list')
+
+        userList.forEach(function (userName) {
+            const userItemElement = document.createElement('user-item');
+            userItemElement.innerText = userName;
+
+            userListElement.appendChild(userItemElement);
+        })
     }
 
     getTemplate() {
@@ -36,9 +55,6 @@ class UserModule extends HTMLElement {
 <button class="btn-add">Add</button>
 
 <user-list>
-    <user-item>Leanne Graham</user-item>
-    <user-item>Ervin Howell</user-item>
-    <user-item>Clementine Bauch</user-item>
 </user-list>
 `;
     }
