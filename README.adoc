@@ -1,0 +1,58 @@
+= Users Web components
+
+== How to launch
+
+git clone or download the repo
+
+In the project directory, run :
+
+[source,bash]
+----
+npx http-server
+----
+
+== Modification objectives
+
+We need to split the initial index.html:
+
+[source,html]
+----
+<body>
+<h1>Users</h1>
+<form>
+    <label for="username">User</label>
+    <input id="username" type="text">
+</form>
+
+<h2>User list</h2>
+<ul>
+    <li>Leanne Graham</li>
+    <li>Ervin Howell</li>
+    <li>Clementine Bauch</li>
+</ul>
+</body>
+----
+
+So index.html contains only the module component
+
+[source,html]
+----
+<body>
+<user-module></user-module>
+</body>
+----
+
+With the module component containing:
+
+[source,html]
+----
+<form>
+    <label for="username">User</label>
+    <input id="username" type="text">
+</form>
+<user-list>
+    <user-item>Leanne Graham</user-item>
+    <user-item>Ervin Howell</user-item>
+    <user-item>Clementine Bauch</user-item>
+</user-list>
+----
