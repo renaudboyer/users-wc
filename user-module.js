@@ -19,6 +19,7 @@ class UserModule extends HTMLElement {
         this.initUserList();
     }
 
+    // TODO: Add button should add user on distant server too
     addItem() {
         const userInput = this.shadowRootElement.querySelector('#username');
         const userListElement = this.shadowRootElement.querySelector('user-list');
@@ -29,20 +30,19 @@ class UserModule extends HTMLElement {
     }
 
     initUserList() {
-        const userList = [
-            'Leanne Graham',
-            'Ervin Howell',
-            'Clementine Bauch'
-        ]
-
         const userListElement = this.shadowRootElement.querySelector('user-list')
 
-        userList.forEach(function (userName) {
-            const userItemElement = document.createElement('user-item');
-            userItemElement.innerText = userName;
+        // Fetch data from an API
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(users => {
+                users.forEach(user => {
+                    const userItemElement = document.createElement('user-item');
+                    userItemElement.innerText = user.name;
 
-            userListElement.appendChild(userItemElement);
-        })
+                    userListElement.appendChild(userItemElement);
+                });
+            });
     }
 
     getTemplate() {
